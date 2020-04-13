@@ -1,6 +1,3 @@
-(function() {
-})();
-
 var coffeeMachine= {
     makeCoffee: function(onFinish){
         console.log('Making coffee...');
