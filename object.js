@@ -3,7 +3,7 @@
 ///Cách 1:
 var newObject_1 = {};
 ///Cách 2
-var newObject_2 = Object.create();
+var newObject_2 = Object.create(Object.prototype);
 ///Cách 3
 var newObject_3 = new Object();
 
@@ -17,49 +17,66 @@ newObject_1.someKey = "Hello World";
 var value = newObject_1.someKey;
 
 // 2. Square bracket syntax
- 
+
 // Set properties
 newObject_2["someKey"] = "Hello World";
 
 // ECMAScript 5 only compatible approaches
 // For more information see: http://kangax.github.com/es5-compat-table/
- 
+
 // 3. Object.defineProperty
 // Set properties
-Object.defineProperties(newObject_3, "someKey", {
-    value: "for more control of the property's behavior",
-    writable: true,
-    enumerable: true,
-    configurable: true 
+Object.defineProperty(newObject_3, "someKey", {
+  value: "for more control of the property's behavior",
+  writable: true,
+  enumerable: true,
+  configurable: true,
 });
 
-newObject_3.value
+newObject_3.value;
 ///Hoặc có thể viết lại như sau:
-var defineProp = function ( obj, key, value ){
-    var config = {
-      value: value,
-      writable: true,
-      enumerable: true,
-      configurable: true
-    };
-    Object.defineProperty( obj, key, config );
+var defineProp = function (obj, key, value) {
+  var config = {
+    value: value,
+    writable: true,
+    enumerable: true,
+    configurable: true,
   };
-
-  //Ex: Tạo một Object "person" rỗng
-  var person = Object.create(Object.prototype);
-  defineProp(person, "name", "Ngoc Son1", "age", 25);
-  defineProp(person, "name", "Ngoc Son2", "age", 26);
-  defineProp(person, "name", "Ngoc Son3", "age", 27);
-  console.log(person);
-
-//================================Objects===============================//
-
-var myDog = {
-  name: "Mickey",
-  age: 1,
-  isActive: false,
+  Object.defineProperty(obj, key, config);
 };
 
-console.log(myDog.name);
+//Ex: Tạo một Object "person" rỗng
+var person = Object.create(Object.prototype);
+defineProp(person, "name", "Ngoc Son1", "age", 25);
+defineProp(person, "name", "Ngoc Son2", "age", 26);
+defineProp(person, "name", "Ngoc Son3", "age", 27);
 
-console.log(myDog["name"]);
+//console.log(person);
+
+//4. Object.defineProperties
+Object.defineProperties(newObject_1, {
+  "someKey":{
+    value:"Hello world",
+    writable: true
+  },
+  "anotherKey":{
+    value:"Food bar",
+    writable: false
+  }
+});
+
+//Cách khác
+newObject_1 = {
+  someKey: {
+    value: "Hello world",
+    writable: true,
+  },
+  anotherKey: {
+    value: "Food bar",
+    writable: false,
+  },
+};
+
+console.log(newObject_1);
+
+//================================Objects===============================//
