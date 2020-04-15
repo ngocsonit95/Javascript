@@ -79,20 +79,7 @@ bird.eat();
 bird.fly();
 
 //Method override
-class CoffeeMachine {
-  makeCoffee() {
-    console.log("making coffee...");
-  }
-}
-
-class SpecialCoffeeMachine extends CoffeeMachine {
-  makeCoffee() {
-    console.log("override making coffeee machine");
-  }
-}
-
-const coffeeMachine = new SpecialCoffeeMachine();
-coffeeMachine.makeCoffee();
+c
 
 class ClassWithStaticMethod {
   static staticMethod() {
